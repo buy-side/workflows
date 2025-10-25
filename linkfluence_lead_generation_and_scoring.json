@@ -1,0 +1,1249 @@
+{
+  "name": "linkfluence_lead_generation_and_scoring",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.linkfluence.me/companies/query ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"filter\": {\n    \"custom_data.lead_score\": null\n  },\n  \"limit\": 100\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "7e5e305e-c5c1-4751-b6bb-cf04e7d6dbb3",
+      "name": "🏢 companies query1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        48,
+        512
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "731a44e9-9680-446b-b61f-191dacd9dadf",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        256,
+        512
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.linkfluence.me/tasks/download_companies  ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"search_url\": \"https://www.linkedin.com/sales/search/company?query=(filters%3AList((type%3ACOMPANY_HEADCOUNT%2Cvalues%3AList((id%3AC%2Ctext%3A11-50%2CselectionType%3AINCLUDED)))%2C(type%3ACOMPANY_HEADCOUNT_GROWTH%2CrangeValue%3A(min%3A10%2Cmax%3A200))%2C(type%3AINDUSTRY%2Cvalues%3AList((id%3A4%2Ctext%3ASoftware%2520Development%2CselectionType%3AINCLUDED)))))&sessionId=MaRThPIzSi%2BaRJGhDuAy5g%3D%3D&viewAllFilters=true\",\n    \"agent_id\": \"stefan-schneider-at\",\n    \"download_pause_at\": 50\n}  ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "e5d7d4b8-a85d-447a-a4af-b014dd3c3810",
+      "name": "📥🏢 download companies3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        400,
+        128
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "ALfuM8v9glZZqZAP",
+          "name": "linkfluence"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.linkfluence.me/companies/custom_data ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"company_id\": \"{{ $('🏢 companies query1').item.json.company_id }}\",\n  \"field_name\": \"lead_score\",\n  \"value\": {\n    \"score\": 0,\n    \"reasons\": [\n      \"is B2C company\"\n    ]\n  }\n} ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "ad842cf4-f5a0-428e-9f74-a21b2f499c6d",
+      "name": "🏢 Set Lead Score = 0",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1056,
+        624
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "ALfuM8v9glZZqZAP",
+          "name": "linkfluence"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.linkfluence.me/companies/custom_data ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"company_id\": \"{{ $('🏢 companies query1').item.json.company_id }}\",\n  \"field_name\": \"lead_score\",\n  \"value\": {\n    \"score\": 30,\n    \"reasons\": [\n      \"B2B Audience\",\n      \"product company\"\n    ]\n  }\n} ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "bf9fe5f2-31f8-4eb6-9329-7f76c9037277",
+      "name": "🏢 Set Lead Score = 30",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1504,
+        624
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "ALfuM8v9glZZqZAP",
+          "name": "linkfluence"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.linkfluence.me/companies/custom_data ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"company_id\": \"{{ $('🏢 companies query1').item.json.company_id }}\",\n  \"field_name\": \"lead_score\",\n  \"value\": {\n    \"score\": 20,\n    \"reasons\": [\n      \"B2B Audience\",\n      \"service company\"      \n    ]\n  }\n} ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "5d3a8c91-a925-4dd0-afb8-310b403c7cc0",
+      "name": "🏢 Set Lead Score = 20",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1280,
+        624
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "ALfuM8v9glZZqZAP",
+          "name": "linkfluence"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.linkfluence.me/tasks/download_people ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"search_url\": \"https://www.linkedin.com/sales/search/people?query=(recentSearchParam%3A(id%3A3877382977%2CdoLogHistory%3Atrue)%2Cfilters%3AList((type%3ASENIORITY_LEVEL%2Cvalues%3AList((id%3A220%2Ctext%3ADirector%2CselectionType%3AINCLUDED)%2C(id%3A320%2Ctext%3AOwner%2520%252F%2520Partner%2CselectionType%3AINCLUDED)%2C(id%3A310%2Ctext%3ACXO%2CselectionType%3AINCLUDED)%2C(id%3A300%2Ctext%3AVice%2520President%2CselectionType%3AINCLUDED)))%2C(type%3ACURRENT_COMPANY%2Cvalues%3AList((id%3Aurn%253Ali%253Aorganization%253A18706840%2Ctext%3ADatature%2CselectionType%3AINCLUDED)))))&sessionId=R0ABLmMjRLydmEoR8ixByA%3D%3D&viewAllFilters=true\",\n    \"agent_id\": \"stefan-schneider-at\",\n \"company_name\": \"{{ $json.company_name }}\",\n \"company_id\": \"{{ $json.company_id }}\"\n}       ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "bbf621a9-36fa-4523-9b53-980e97bddc1c",
+      "name": "👷‍♂️ download people with search url1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2288,
+        112
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "ALfuM8v9glZZqZAP",
+          "name": "linkfluence"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# 🏢 Download Companies \n### insert the following parameters to start the download task:\n- search url from linkeidn \n- your agent id\n- [nr. of companies you want to download]\n",
+        "height": 304,
+        "width": 720
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "509bff0b-bb7c-47c8-88c1-d6e0958b1070",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## 🙋‍♂️ Download Persons\n- query the companies for which you want to download the persons from your linkefluence account\n- usally those that scored high enough in your scoring process\n\n### for the person download task insert:\n- search url from linkeidn \n- your agent id\n- [nr. of persons you want to \ndownload per company]",
+        "height": 304,
+        "width": 720,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        0
+      ],
+      "id": "fe5118ac-5fc3-4508-be37-efd1d9e6ef43",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## 🏢 Score Companies \n- load the companies you want to score from you linkedfluence account.\n- analyse them with LLMs, Pyhton or Java Script Nodes in n8n that you need to calculate your personal lead score.\n- store the lead score back to your linkedfluence account for further processing.",
+        "height": 464,
+        "width": 1680
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        384
+      ],
+      "id": "9f8e3e8b-1433-4f84-bb79-2d7548f26b94",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "## 🙋‍♂️ Score Persons\n- load the companies from which you want to score the staff from you linkedfluence account.\n- analyse them with LLMs, Pyhton or Java Script Nodes in n8n that you need to calculate your personal lead score.\n- store the lead score back to your linkedfluence account for further processing.",
+        "height": 464,
+        "width": 1392,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        384
+      ],
+      "id": "426285ff-2882-4e44-bcc0-bd8a7790730e",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.linkfluence.me/companies/employees",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"company_id\": \"{{ $json.company_id }}\"\n} ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "a0e077cd-d10b-4455-a4e8-920de6f3074f",
+      "name": "🙋‍♂️ get all employees",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2224,
+        608
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "ALfuM8v9glZZqZAP",
+          "name": "linkfluence"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Hole das erste Item mit der employees-Liste\nconst employees = $input.first().json.employees;\n\n// Erzeuge eine formatierte Zeile für jede Person\nconst profileLines = employees.map(emp => {\n  const id = emp.public_identifier;\n  const role = emp.role || \"No role given\";\n  return `- ${id}: ${role}`;\n});\n\n// Verbinde alles zu einem einzigen String\nconst formattedProfiles = profileLines.join(\"\\n\");\n\n// Gib das Ergebnis zurück\nreturn [\n  {\n    json: {\n      formatted_profiles: formattedProfiles\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2400,
+        608
+      ],
+      "id": "39baf094-f881-478c-b458-89ad1f489103",
+      "name": "Prepare Input for Prompt"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4-turbo",
+          "mode": "list",
+          "cachedResultName": "GPT-4-TURBO"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are an expert in B2B marketing analytics and customer acquisition economics.\n\nAnalyze the company's LinkedIn description provided below and determine:\n\nWhether the company primarily targets a B2C (business-to-consumer) or B2B (business-to-business) market.\n\nWhether the company primarily sells a service or a product.\n\nBase your judgment only on the information in the LinkedIn description.\nIf there is insufficient information, make the most likely classification based on context.\n\nReturn your answer strictly in the following JSON format (no extra text, comments, or explanations).\n\n**✅ Example outputs**\n*example 1:\n{\n  \"Market\": \"B2C\",\n  \"Type\": \"service\"\n}\n\n*example 2:\n{\n  \"Market\": \"B2B\",\n  \"Type\": \"product\"\n}\n\n*example 3:\n{\n  \"Market\": \"B2C\",\n  \"Type\": \"product\"\n}\n\n*example 4:\n{\n  \"Market\": \"B2B\",\n  \"Type\": \"service\"\n}\n\n---\n**Company Summary:**\n{{ $json.data.description }}\n"
+            },
+            {}
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "id": "9a4b418b-6694-423d-bb84-7be48a30520b",
+      "name": "B2B / B2C, Service /Product",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.3,
+      "position": [
+        480,
+        528
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "r35uYCv8SFvOHZrL",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "6f589014-ad5e-46c0-8a5b-f66df27c813e",
+              "leftValue": "={{ $json.message.content.Type }}",
+              "rightValue": "product",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "461c22c6-3628-4aca-bfaa-d6839d921ad7",
+      "name": "is product company",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1056,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "10c7b5de-71c8-4419-8675-d4db582bcdcd",
+              "leftValue": "={{ $json.message.content.Market }}",
+              "rightValue": "B2B",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "5140250a-6a5b-4982-ab0a-187200ea1579",
+      "name": "is B2B company",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        800,
+        528
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1e8efi0vDEeEO4MpLD0hBxLqwzjnoe-QT-TT7X1UvyDY",
+          "mode": "list",
+          "cachedResultName": "n8n_output",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1e8efi0vDEeEO4MpLD0hBxLqwzjnoe-QT-TT7X1UvyDY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "companies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1e8efi0vDEeEO4MpLD0hBxLqwzjnoe-QT-TT7X1UvyDY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "universal_name": "={{ $json.universal_name }}",
+            "company_name": "={{ $json.company_name }}",
+            "data.tagline": "={{ $json.data.tagline }}",
+            "data.description": "={{ $json.data.description }}",
+            "data.specialities": "={{ $json.data.specialities }}",
+            "data.industry": "={{ $json.data.industry }}",
+            "data.locations": "={{ $json.data.locations }}",
+            "data.headcount": "={{ $json.data.headcount }}",
+            "custom_data.lead_score.score": "={{ $json.custom_data.lead_score.score }}",
+            "custom_data.lead_score.reasons": "={{ $json.custom_data.lead_score.reasons }}",
+            "company_id": "={{ $json.company_id }}",
+            "llm_output.Market": "={{ $json.custom_data.lead_score['llm_output.Market'] }}",
+            "llm_output.Type": "={{ $json.custom_data.lead_score['llm_output.Type'] }}"
+          },
+          "matchingColumns": [
+            "company_id"
+          ],
+          "schema": [
+            {
+              "id": "company_id",
+              "displayName": "company_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "universal_name",
+              "displayName": "universal_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "company_name",
+              "displayName": "company_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data.tagline",
+              "displayName": "data.tagline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data.description",
+              "displayName": "data.description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data.specialities",
+              "displayName": "data.specialities",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data.industry",
+              "displayName": "data.industry",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data.locations",
+              "displayName": "data.locations",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data.headcount",
+              "displayName": "data.headcount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "custom_data.lead_score.score",
+              "displayName": "custom_data.lead_score.score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "llm_output.Market",
+              "displayName": "llm_output.Market",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "llm_output.Type",
+              "displayName": "llm_output.Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "custom_data.lead_score.reasons",
+              "displayName": "custom_data.lead_score.reasons",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1440,
+        128
+      ],
+      "id": "880151de-6b8d-4ac2-b728-372b204f3d94",
+      "name": "Export Companies",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Mzj1inUqHUammUey",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.linkfluence.me/companies/query  ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"filter\": {\n    \"custom_data.lead_score.score\": {\"$gt\":21}\n  },\n  \"limit\": 100\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "e0dd7c0b-1d83-42db-8ba8-809a5db51ff7",
+      "name": "🏢 get companies3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1808,
+        576
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "ALfuM8v9glZZqZAP",
+          "name": "linkfluence"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## 📦 Export Companies\n- query the companies which you want to export from your linkefluence account\n- connect it to whatever platform you want to export it to:\n - google sheets\n - airtable\n - your CRM (Hubspot, \n   Pipedrive, Sales Forece...)\n",
+        "height": 304,
+        "width": 736
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        944,
+        0
+      ],
+      "id": "f9f55a0c-96d0-4608-a332-8c60edb16881",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "## 📦 Export Persons\n- query the persons which you want to export from your linkefluence account\n- connect it to whatever platform you want to export it to:\n - google sheets\n - airtable\n - your CRM (Hubspot, \n   Pipedrive, Sales Forece...)",
+        "height": 304,
+        "width": 656,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2496,
+        0
+      ],
+      "id": "1273cb48-8257-4f50-a95b-6d906512b0df",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1dw2uJ1JzUszby0vi5WJsCktljCTzMIyuVoUx-pEuYZk",
+          "mode": "list",
+          "cachedResultName": "Kopie von n8n_output",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dw2uJ1JzUszby0vi5WJsCktljCTzMIyuVoUx-pEuYZk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 640265751,
+          "mode": "list",
+          "cachedResultName": "persons",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dw2uJ1JzUszby0vi5WJsCktljCTzMIyuVoUx-pEuYZk/edit#gid=640265751"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "public_identifier",
+              "displayName": "public_identifier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "first_name",
+              "displayName": "first_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_name",
+              "displayName": "last_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "is selected",
+              "displayName": "is selected",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "reasons",
+              "displayName": "reasons",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "role",
+              "displayName": "role",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "headline",
+              "displayName": "headline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "location",
+              "displayName": "location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "public_profile_url",
+              "displayName": "public_profile_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "profile_picture_url",
+              "displayName": "profile_picture_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "company",
+              "displayName": "company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "company_id",
+              "displayName": "company_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "company_location",
+              "displayName": "company_location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "company_industry",
+              "displayName": "company_industry",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tenure_company_years",
+              "displayName": "tenure_company_years",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tenure_company_months",
+              "displayName": "tenure_company_months",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "premium",
+              "displayName": "premium",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "invitation_state",
+              "displayName": "invitation_state",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "user_id",
+              "displayName": "user_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "workspace_id",
+              "displayName": "workspace_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        2960,
+        112
+      ],
+      "id": "3598125e-1065-4fb5-a834-438e0ab505df",
+      "name": "Export Persons",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Mzj1inUqHUammUey",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2016,
+        576
+      ],
+      "id": "b18a1dad-d656-4f71-868e-afabe5606061",
+      "name": "Loop Over Items2"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4-turbo",
+          "mode": "list",
+          "cachedResultName": "GPT-4-TURBO"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=From the list of profiles below, pick one person who is most likely to have decision-making authority over the sales budget.\n\nSelection cues (for reasoning only, do NOT output): Prefer Founder/Owner, CEO/President, C-level (CRO/COO/CTO/CFO/CMO), Managing Director, VP, Head of Sales/Revenue, Sales Director, or roles mentioning budget/P&L/procurement/buying/“decision maker”. If ties, choose the most senior title; if still tied, choose the one closest to sales/revenue; if still tied, choose the first in the list.\n\nOUTPUT CONTRACT (must be followed exactly):\n- Return ONLY a single valid JSON string on one line.\n- The string must be exactly one public_identifier from the list (case-sensitive match).\n- No arrays, no objects, no extra text, no markdown, no comments, no line breaks.\n- Your response must match this regex exactly:\n- ^\"[a-z0-9-]+\"$\n\nValid example:\n\"patrick-seidl\"\n\nInvalid examples (do NOT do these):\n[\"patrick-seidl\"]\n{ \"id\": \"patrick-seidl\" }\n\"patrick-seidl\",\n\"Patrick-Seidl\"\npatrick-seidl\n\nProfiles (public_identifier: title):\n{{ $json.formatted_profiles }}\n\nRespond with only the JSON string."
+            },
+            {
+              "content": "You are a data extractor. Follow the output contract exactly. Do not add anything beyond what is explicitly allowed.",
+              "role": "system"
+            }
+          ]
+        },
+        "simplify": false,
+        "options": {}
+      },
+      "id": "df4b1b45-b12f-4646-a87e-ce582c0264cc",
+      "name": "Select best contact person1",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.3,
+      "position": [
+        2608,
+        608
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "r35uYCv8SFvOHZrL",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "https://api.linkfluence.me/persons/custom_data",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"public_identifier\": {{ $json.choices[0].message.content }},\n  \"field_name\": \"selected\",\n  \"value\": {\n    \"score\": 10,\n    \"reasons\": [\n      \"is Budget owner\"\n    ]\n  }\n} ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2960,
+        608
+      ],
+      "id": "ef986379-544c-4851-a6b6-80494174a723",
+      "name": "HTTP Request1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "ALfuM8v9glZZqZAP",
+          "name": "linkfluence"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://e0eccde7e8b9.ngrok-free.app/persons/query  ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"filter\": {}\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "c4396ff4-c61d-4c0f-ad40-336314aabc95",
+      "name": "🙋‍♂️ get persons",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2768,
+        112
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "ALfuM8v9glZZqZAP",
+          "name": "linkfluence"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.linkfluence.me/companies/query  ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"filter\": {\n    \"custom_data.lead_score.score\": {\"$gt\":21}\n  }\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "02ee690a-b661-4d86-b091-405742568976",
+      "name": "🏢 query companies",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2096,
+        112
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "ALfuM8v9glZZqZAP",
+          "name": "linkfluence"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.linkfluence.me/companies/query  ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"filter\": {\n    \"custom_data.lead_score.score\": {\"$exists\": true}\n  }\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "c2160634-62ad-4970-a9d6-8f54a4974cbf",
+      "name": "🏢 query companies2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1232,
+        128
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "ALfuM8v9glZZqZAP",
+          "name": "linkfluence"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "🏢 companies query1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "B2B / B2C, Service /Product",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🏢 Set Lead Score = 0": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🏢 Set Lead Score = 30": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🏢 Set Lead Score = 20": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🙋‍♂️ get all employees": {
+      "main": [
+        [
+          {
+            "node": "Prepare Input for Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Input for Prompt": {
+      "main": [
+        [
+          {
+            "node": "Select best contact person1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "B2B / B2C, Service /Product": {
+      "main": [
+        [
+          {
+            "node": "is B2B company",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "is product company": {
+      "main": [
+        [
+          {
+            "node": "🏢 Set Lead Score = 30",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "🏢 Set Lead Score = 20",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "is B2B company": {
+      "main": [
+        [
+          {
+            "node": "is product company",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "🏢 Set Lead Score = 0",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🏢 get companies3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [],
+        [
+          {
+            "node": "🙋‍♂️ get all employees",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select best contact person1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🙋‍♂️ get persons": {
+      "main": [
+        [
+          {
+            "node": "Export Persons",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🏢 query companies": {
+      "main": [
+        [
+          {
+            "node": "👷‍♂️ download people with search url1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🏢 query companies2": {
+      "main": [
+        [
+          {
+            "node": "Export Companies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d75104f4-f629-4dbf-8c30-30c9d528eb66",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a78f2cc491d6df761f3c7da134a4142c084d0bfc036a9c3bbbde11aedd637df2"
+  },
+  "id": "jBNo2CRFvEmEQrgZ",
+  "tags": []
+}
