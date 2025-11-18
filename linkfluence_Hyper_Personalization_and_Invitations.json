@@ -14,27 +14,21 @@
             {}
           ]
         },
-        "jsonBody": "={\n    \"public_identifier\": \"{{ $json.public_identifier }}\",\n    \"agent_id\": \"stefanschneiderat\",\n    \"set_tags_at_enqueue\":[\"enrichment_enqueued\"],\n    \"set_tags_at_completion\":[\"enrichment_done\"]\n}  ",
+        "jsonBody": "={\n    \"public_identifier\": \"{{ $json.public_identifier }}\",\n       \"set_tags_at_enqueue\":[\"enrichment_enqueued\"],\n    \"set_tags_at_completion\":[\"enrichment_done\"]\n}  ",
         "options": {
           "redirect": {
             "redirect": {}
           }
         }
       },
-      "id": "f19d216c-b9e7-44df-a057-7341e053dc92",
+      "id": "291cbb07-e010-4fbc-94be-0ce8189fb870",
       "name": "⚙️📥 Person_Detail",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5328,
-        960
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        1416,
+        812
+      ]
     },
     {
       "parameters": {
@@ -51,20 +45,14 @@
           }
         }
       },
-      "id": "824c0fd8-90ea-46e9-86f4-fb22cd4f9eec",
+      "id": "ecf43410-81ed-4f1d-97bd-11892dffdfe6",
       "name": "person_set_message",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5904,
-        2048
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        1992,
+        1900
+      ]
     },
     {
       "parameters": {
@@ -76,10 +64,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        4352,
-        1184
+        440,
+        1036
       ],
-      "id": "cc45fc00-b819-4fbf-a153-7a402563494e",
+      "id": "185655bf-5b76-4591-9b11-2d245671b554",
       "name": "Sticky Note"
     },
     {
@@ -97,20 +85,14 @@
           }
         }
       },
-      "id": "6fdf32a4-3409-4f48-bf81-a0b0f8158da6",
+      "id": "89c1b8ac-38f2-4f62-9f23-90446e37d95b",
       "name": "🔍🙋‍♂️🎉 4_invitations",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5104,
-        384
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        1192,
+        236
+      ]
     },
     {
       "parameters": {
@@ -120,27 +102,21 @@
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"public_identifier\": \"{{ $json.public_identifier }}\",\n    \"agent_id\": \"stefanschneiderat\",\n    \"set_tags_at_enqueue\":[\"invitation_enqueued\"],\n    \"set_tags_at_completion\":[\"invitation_done\"]\n  }  ",
+        "jsonBody": "={\n    \"public_identifier\": \"{{ $json.public_identifier }}\",\n    \"set_tags_at_enqueue\":[\"invitation_enqueued\"],\n    \"set_tags_at_completion\":[\"invitation_done\"]\n  }  ",
         "options": {
           "redirect": {
             "redirect": {}
           }
         }
       },
-      "id": "10a0407b-e9d4-407c-9a5b-5fbb1d0744d5",
+      "id": "d5f4b09a-7abf-4434-a751-6321082facdd",
       "name": "⚙️🎉create_invite",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5296,
-        384
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        1384,
+        236
+      ]
     },
     {
       "parameters": {
@@ -151,10 +127,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        4352,
-        288
+        440,
+        140
       ],
-      "id": "dcd26f08-fda8-4aba-bc7c-651f57085aa1",
+      "id": "63c3139e-013e-4ea2-8807-075adeb5b87f",
       "name": "Sticky Note1"
     },
     {
@@ -167,10 +143,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        4352,
-        848
+        440,
+        700
       ],
-      "id": "298512fa-c76f-4731-8fc6-4c58db8c0cd7",
+      "id": "e8c59bf0-d3d5-41dd-a82c-d4df0d5f7d29",
       "name": "Sticky Note2"
     },
     {
@@ -188,20 +164,14 @@
           }
         }
       },
-      "id": "983fe7f9-ec52-4170-bb99-141c4dade071",
+      "id": "99f163ff-cfd4-46b2-bbb8-e49909ee8a2c",
       "name": "🔍🙋‍♂️🌱 4_enrichment",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5120,
-        960
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        1208,
+        812
+      ]
     },
     {
       "parameters": {
@@ -213,10 +183,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        4352,
-        2368
+        440,
+        2220
       ],
-      "id": "ce673f0f-d4ae-45bc-a261-c6c16e71d834",
+      "id": "9da77c24-0471-4cdb-9072-4add4720723f",
       "name": "Sticky Note5"
     },
     {
@@ -234,20 +204,14 @@
           }
         }
       },
-      "id": "609633ff-8983-4ee3-ac76-9ed401ee3308",
+      "id": "4ebd78d3-0021-43a1-b410-a2bfc5bd1e71",
       "name": "🔍🙋‍♂️✉️ 4_send_message",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        4624,
-        2688
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        712,
+        2540
+      ]
     },
     {
       "parameters": {
@@ -256,13 +220,13 @@
         "width": 1933.4549120375327,
         "color": 5
       },
-      "id": "2b2c4104-8800-4c7a-bd78-23b756a77fa0",
+      "id": "968829d9-7aab-4254-bb6b-f0284853f999",
       "name": "Sticky Note6",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        4352,
-        624
+        440,
+        476
       ]
     },
     {
@@ -273,27 +237,21 @@
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"public_identifier\": \"{{ $json.public_identifier }}\",\n    \"agent_id\": \"stefanschneiderat\",\n    \"set_tags_at_enqueue\":[\"send_message_enqued\"],\n    \"set_tags_at_completion\":[\"send_message_done\"],\n    \"message_text\": {{ JSON.stringify($json.custom_data.outreach.sMessage_1) }}\n\n}  ",
+        "jsonBody": "={\n    \"public_identifier\": \"{{ $json.public_identifier }}\",\n    \"set_tags_at_enqueue\":[\"send_message_enqued\"],\n    \"set_tags_at_completion\":[\"send_message_done\"],\n    \"message_text\": {{ JSON.stringify($json.custom_data.outreach.sMessage_1) }}\n\n}  ",
         "options": {
           "redirect": {
             "redirect": {}
           }
         }
       },
-      "id": "6534695d-7e4f-48a9-a321-a880ae2c70b1",
+      "id": "e160bb10-43fd-4c69-a4ea-54d14a9465cf",
       "name": "⚙️🙋‍♂️✉️send_message1",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        4816,
-        2688
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        904,
+        2540
+      ]
     },
     {
       "parameters": {
@@ -303,27 +261,21 @@
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"company_id\": \"{{ $('🔍🙋‍♂️🌱 4_enrichment').item.json.employer.company_id }}\",\n    \"agent_id\": \"stefanschneiderat\",\n    \"set_tags_at_enqueue\":[\"enrichment_enqueued\"],\n    \"set_tags_at_completion\":[\"enrichment_done\"]\n}    ",
+        "jsonBody": "={\n    \"company_id\": \"{{ $('🔍🙋‍♂️🌱 4_enrichment').item.json.employer.company_id }}\",\n    \"set_tags_at_enqueue\":[\"enrichment_enqueued\"],\n    \"set_tags_at_completion\":[\"enrichment_done\"]\n}    ",
         "options": {
           "redirect": {
             "redirect": {}
           }
         }
       },
-      "id": "4d30197a-efb7-4984-9153-3d43b46b00b2",
+      "id": "88bd394d-0612-481e-b31c-91186f080f5c",
       "name": "⚙️🏦 Company_Detail",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5520,
-        960
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        1608,
+        812
+      ]
     },
     {
       "parameters": {
@@ -340,20 +292,14 @@
           }
         }
       },
-      "id": "3204fc4f-8df5-4176-9e29-5fd785226077",
+      "id": "e2885826-6987-4dc6-bed7-533f1e7b6f6a",
       "name": "🔍🙋‍♂️💌 people_4_message",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        4880,
-        1360
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        968,
+        1212
+      ]
     },
     {
       "parameters": {
@@ -370,20 +316,14 @@
           }
         }
       },
-      "id": "f4fc7ce3-8fbb-4c52-8bcb-ee99cae5714e",
+      "id": "048d764f-ca10-48ab-aed5-8244478606e0",
       "name": "🔍🏦  employer_info",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        4880,
-        1600
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        968,
+        1452
+      ]
     },
     {
       "parameters": {
@@ -399,13 +339,13 @@
         },
         "options": {}
       },
-      "id": "1118131f-e5de-4130-9be2-caf2692e9d21",
+      "id": "a0c553ec-3775-4d95-acb2-17fe3c414f0d",
       "name": "Opening_Line",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        5440,
-        1600
+        1528,
+        1452
       ]
     },
     {
@@ -422,13 +362,13 @@
         },
         "options": {}
       },
-      "id": "1a275c81-45c9-4088-b55f-7cc366f118fe",
+      "id": "a15e3e9d-f9f2-4368-8982-e6c3025caef3",
       "name": "ICP",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        5440,
-        1824
+        1528,
+        1676
       ]
     },
     {
@@ -445,26 +385,26 @@
         },
         "options": {}
       },
-      "id": "5280b0f9-a361-4def-bb58-fb7983bd7bec",
+      "id": "70f1250c-c3f0-46fd-bd46-cd5991db8e3e",
       "name": "Company_Name",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        5440,
-        2048
+        1528,
+        1900
       ]
     },
     {
       "parameters": {
         "jsCode": "return items.map((item, idx) => {\n  // Vorherige Werte holen\n  const sFirst_Name = $item(idx).$node[\"Clean_First_Name\"].json.sFirst_Name;\n  const sCompany_Name = $item(idx).$node[\"Company_Name\"].json.sCompany_Name;\n  const sICP = $item(idx).$node[\"ICP\"].json.sICP;\n  const sOpening_Line = $item(idx).$node[\"Opening_Line\"].json.sOpening_Line;\n  const sReference_Group = $item(idx).$node[\"Reference_Group\"].json.sReference_Group;\n\n  // Message bauen\n  const message = `Hey ${sFirst_Name}, \n${sOpening_Line}\n\nI'm reaching out because I can help you connect more effectively with ${sICP}.\n\nGiven how active you and ${sCompany_Name} are on LinkedIn, I believe\nscaling your LinkedIn strategy with our AI-Agents might be interesting for you.\nWe run them as a managed service with success-based pricing, designed for\ngrowing companies that need big results without big budgets.\n\nI'd be happy to share a quick case study of how we helped another\n${sReference_Group} increase their LinkedIn engagement by 300%.\n\nWorth a 15-minute call?\n\nBR Stefan`;\n\n  // Ergebnis ins Item schreiben → wird in den nächsten Nodes verfügbar\n  item.json.message = message;\n\n  return item;\n});\n"
       },
-      "id": "4df49839-f1f1-4f9f-9614-8c15a76e451e",
+      "id": "d1118ef1-d96a-4622-961f-d1eb2cd53baf",
       "name": "Message_Builder",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        5696,
-        2048
+        1784,
+        1900
       ]
     },
     {
@@ -481,13 +421,13 @@
         },
         "options": {}
       },
-      "id": "acf1f12e-1aad-4bb6-89cf-fb34c633ce91",
+      "id": "a20f4958-d254-4645-97cd-f2e7905a30bf",
       "name": "Clean_First_Name",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        6096,
-        1600
+        2184,
+        1452
       ]
     },
     {
@@ -504,13 +444,13 @@
         },
         "options": {}
       },
-      "id": "60190bb6-7117-4bd0-8fad-20f56dd43040",
+      "id": "5ece8a00-161b-4b55-9727-c1e9a37e45f9",
       "name": "Reference_Group",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        6096,
-        1824
+        2184,
+        1676
       ]
     },
     {
@@ -523,10 +463,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        5040,
-        2368
+        1128,
+        2220
       ],
-      "id": "7cce7f03-7c38-4e8f-ac92-550136e45476",
+      "id": "6a8628c5-79b8-45bd-91e5-fc78578f171a",
       "name": "Sticky Note13"
     },
     {
@@ -544,20 +484,14 @@
           }
         }
       },
-      "id": "5782dca6-ce4c-4e35-b279-959a4ec1dbc1",
+      "id": "9b0fbe0f-f823-4f2e-981f-1f69417b25f0",
       "name": "🔍🙋‍♂️💌 people_message_check",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5504,
-        2480
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        1592,
+        2332
+      ]
     },
     {
       "parameters": {
@@ -574,20 +508,14 @@
           }
         }
       },
-      "id": "05c21818-8065-47cd-b25b-97cb1a784861",
+      "id": "a3879cc2-cc69-448f-b955-b323693b2612",
       "name": "🔍🏦  employer_info_check",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5696,
-        2480
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        1784,
+        2332
+      ]
     },
     {
       "parameters": {
@@ -617,20 +545,14 @@
           "returnAllMatches": "returnAllMatches"
         }
       },
-      "id": "e0033e67-0704-4d12-a29a-11418aac31e5",
+      "id": "ee0b7ef9-9d65-45fe-844d-1e3b42f6a4ec",
       "name": "get approved messages",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.3,
       "position": [
-        5312,
-        2688
-      ],
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Mzj1inUqHUammUey",
-          "name": "Google Sheets account"
-        }
-      }
+        1400,
+        2540
+      ]
     },
     {
       "parameters": {
@@ -747,20 +669,14 @@
         },
         "options": {}
       },
-      "id": "1929e4ad-35df-4c8a-a89a-6b8a234798fc",
+      "id": "fc75a700-882b-48d8-964e-f1b7dba11a6e",
       "name": "export messages",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.3,
       "position": [
-        5904,
-        2480
-      ],
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Mzj1inUqHUammUey",
-          "name": "Google Sheets account"
-        }
-      }
+        1992,
+        2332
+      ]
     },
     {
       "parameters": {
@@ -770,27 +686,21 @@
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"public_identifier\": \"{{ $json.public_identifier }}\",\n    \"agent_id\": \"stefanschneiderat\",\n    \"set_tags_at_enqueue\":[\"send_message_enqueued\"],\n    \"set_tags_at_completion\":[\"send_message_done\"],\n    \"message_text\": {{ JSON.stringify($json.message) }}\n}  ",
+        "jsonBody": "={\n    \"public_identifier\": \"{{ $json.public_identifier }}\",\n        \"set_tags_at_enqueue\":[\"send_message_enqueued\"],\n    \"set_tags_at_completion\":[\"send_message_done\"],\n    \"message_text\": {{ JSON.stringify($json.message) }}\n}  ",
         "options": {
           "redirect": {
             "redirect": {}
           }
         }
       },
-      "id": "2f3a13b8-41a7-4d5e-938d-53f763be3ac5",
+      "id": "4551baed-cda0-4471-bb4d-b99290fdb847",
       "name": "⚙️🙋‍♂️✉️send_approved_messages",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5696,
-        2688
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        1784,
+        2540
+      ]
     },
     {
       "parameters": {
@@ -803,20 +713,14 @@
         "jsonBody": "={\n  \"public_identifier\": \"{{ $('Loop Over Companies').item.json.public_identifier }}\",\n  \"tags\": [\"set_message_done\"]  \n}    ",
         "options": {}
       },
-      "id": "79bfca69-f53d-4e1f-80cc-f7228c4786b8",
+      "id": "2515f12b-9293-4ac2-aa78-cbe0f9b66d1f",
       "name": "person_set_tag",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        6096,
-        2048
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        2184,
+        1900
+      ]
     },
     {
       "parameters": {
@@ -835,20 +739,14 @@
         },
         "options": {}
       },
-      "id": "fbe83474-833f-48de-b4e2-5425dd14fbb5",
+      "id": "4f9be0ac-493e-4ecc-ad1d-62c56a8a0ec8",
       "name": "Generate Opening Line",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.3,
       "position": [
-        5072,
-        1600
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "r35uYCv8SFvOHZrL",
-          "name": "OpenAi account"
-        }
-      }
+        1160,
+        1452
+      ]
     },
     {
       "parameters": {
@@ -867,20 +765,14 @@
         },
         "options": {}
       },
-      "id": "e9176d3e-a14b-4ea9-bf8e-826228ba4944",
+      "id": "ff7e6611-e77b-4280-8fd6-18d9f7682d94",
       "name": "Generate ICP",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.3,
       "position": [
-        5072,
-        1824
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "r35uYCv8SFvOHZrL",
-          "name": "OpenAi account"
-        }
-      }
+        1160,
+        1676
+      ]
     },
     {
       "parameters": {
@@ -899,20 +791,14 @@
         },
         "options": {}
       },
-      "id": "8e820fdb-ef6e-4cd9-a934-46e0dd23aaf7",
+      "id": "f10abfc1-c162-40ea-8e3c-c1bc5a824125",
       "name": "Clean Company Name",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.3,
       "position": [
-        5072,
-        2048
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "r35uYCv8SFvOHZrL",
-          "name": "OpenAi account"
-        }
-      }
+        1160,
+        1900
+      ]
     },
     {
       "parameters": {
@@ -931,20 +817,14 @@
         },
         "options": {}
       },
-      "id": "97775f61-f578-4a41-8de9-d2c481579530",
+      "id": "b29c3fed-fa27-4871-ae3e-1f803bac66b8",
       "name": "Get First Name Clean",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.3,
       "position": [
-        5696,
-        1600
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "r35uYCv8SFvOHZrL",
-          "name": "OpenAi account"
-        }
-      }
+        1784,
+        1452
+      ]
     },
     {
       "parameters": {
@@ -963,20 +843,14 @@
         },
         "options": {}
       },
-      "id": "c83f7b60-ee8c-4407-9ea0-9f331d47ae66",
+      "id": "6b9aeec8-0ae1-441f-bcb3-f116ececa011",
       "name": "Get Reference Group",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.3,
       "position": [
-        5696,
-        1824
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "r35uYCv8SFvOHZrL",
-          "name": "OpenAi account"
-        }
-      }
+        1784,
+        1676
+      ]
     },
     {
       "parameters": {
@@ -988,13 +862,13 @@
           ]
         }
       },
-      "id": "67e95711-a48a-4e61-b564-76a71c71a710",
+      "id": "f70cc0d4-d922-451f-9080-6f12beae5e8c",
       "name": "Invitations_Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        4896,
-        384
+        984,
+        236
       ]
     },
     {
@@ -1007,13 +881,13 @@
           ]
         }
       },
-      "id": "e5a4ebce-7af6-461c-8a27-973019d3d6ac",
+      "id": "216986eb-d42a-4074-9322-c7a96efc2ec9",
       "name": "Enricht_Person_Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        4896,
-        960
+        984,
+        812
       ]
     },
     {
@@ -1026,13 +900,13 @@
           ]
         }
       },
-      "id": "2c2f9b55-fa57-4964-b0a0-b056cfc66e0e",
+      "id": "0f2a9100-d115-4608-82ed-c30ee9d2fb6c",
       "name": "Create_Message_Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        4672,
-        1360
+        760,
+        1212
       ]
     },
     {
@@ -1045,13 +919,13 @@
           ]
         }
       },
-      "id": "bba15eb6-01c8-49c4-9b9f-129c0bacea07",
+      "id": "2d38beee-c5a7-43dd-a8ff-7985de07d160",
       "name": "Send_Message_Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        4416,
-        2688
+        504,
+        2540
       ]
     },
     {
@@ -1064,13 +938,13 @@
           ]
         }
       },
-      "id": "0ec5b6fb-0dbd-4d7b-ba3c-b2d4a0aa8cf1",
+      "id": "fe46ba14-2dfa-450a-8c50-cb87564774fc",
       "name": "Push_Messages_for_Review",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        5104,
-        2480
+        1192,
+        2332
       ]
     },
     {
@@ -1083,10 +957,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        5600,
-        288
+        1688,
+        140
       ],
-      "id": "9f38dac7-5f54-435a-a9cc-984979b79f84",
+      "id": "967b602f-4530-487a-8681-0d6041183c2d",
       "name": "Sticky Note15"
     },
     {
@@ -1104,10 +978,10 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        5504,
-        2688
+        1592,
+        2540
       ],
-      "id": "3b90e296-d67e-4988-bdbc-3329d40e6952",
+      "id": "80b1ea04-cda2-4711-a561-fb0137752d22",
       "name": "Sort"
     },
     {
@@ -1120,13 +994,13 @@
           ]
         }
       },
-      "id": "dbfe3e0a-6071-4ff6-96b4-9ea416c82471",
+      "id": "cbbeda8b-cea8-4a51-a8dc-470f922ce2b1",
       "name": "Send_Approved",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        5104,
-        2688
+        1192,
+        2540
       ]
     },
     {
@@ -1152,29 +1026,24 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        5312,
-        2480
+        1400,
+        2332
       ],
-      "id": "58b45e25-768e-4c65-a7e7-4eb664a117cd",
+      "id": "2bb7e063-e4d2-4a08-a2a1-c6b7ac6b8189",
       "name": "Clear sheet",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Mzj1inUqHUammUey",
-          "name": "Google Sheets account"
-        }
-      }
+      "credentials": {}
     },
     {
       "parameters": {
         "options": {}
       },
-      "id": "429633bf-a9a6-4716-8f38-67d6d2cca926",
+      "id": "3a2e5145-5147-407e-be26-adc192a905cb",
       "name": "Loop Over Companies",
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        4672,
-        1584
+        760,
+        1436
       ]
     },
     {
@@ -1188,20 +1057,14 @@
         "jsonBody": "={\n  \"public_identifier\": \"{{ $('get approved messages').item.json.public_identifier }}\",\n  \"tags\": [\"send_message_approved\"]  \n}    ",
         "options": {}
       },
-      "id": "0ff76417-ae1e-45a3-9428-e9f88bbdf44d",
+      "id": "88219836-6882-47a2-b18c-e83abf13ae2d",
       "name": "set_tag_message_approved",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5904,
-        2688
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "ALfuM8v9glZZqZAP",
-          "name": "linkfluence"
-        }
-      }
+        1992,
+        2540
+      ]
     },
     {
       "parameters": {
@@ -1225,17 +1088,12 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        6112,
-        2688
+        2200,
+        2540
       ],
-      "id": "2f991110-cd2b-461d-addf-b0ddb13cc177",
+      "id": "be95d162-1680-461a-aeb5-e3a4b7d3b23b",
       "name": "Delete rows from sheet",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Mzj1inUqHUammUey",
-          "name": "Google Sheets account"
-        }
-      }
+      "credentials": {}
     },
     {
       "parameters": {
@@ -1244,13 +1102,13 @@
         "width": 1949,
         "color": 5
       },
-      "id": "ca48fef6-fdb9-4df2-8df9-e973eb136895",
+      "id": "e4e49138-72b7-4a0c-941c-0cc102756c7b",
       "name": "Sticky Note16",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        4352,
-        2944
+        440,
+        2796
       ]
     }
   ],
@@ -1586,11 +1444,6 @@
         ]
       ]
     },
-    "export messages": {
-      "main": [
-        []
-      ]
-    },
     "Clear sheet": {
       "main": [
         [
@@ -1630,11 +1483,10 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "e84eb1c7-c692-466a-9508-8e9861969f46",
+  "versionId": "fc2a13bc-b6ef-47be-acfc-fce57876a5a6",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "a78f2cc491d6df761f3c7da134a4142c084d0bfc036a9c3bbbde11aedd637df2"
+    "instanceId": "1fa85c4d1a08fc87e14438ac5df9c6b0197a2cb7066fb3dbdaf34a974db55ab9"
   },
-  "id": "lh4MmfkQflWwHcUh",
+  "id": "0MskSb0xgSHiEpuv",
   "tags": []
 }
